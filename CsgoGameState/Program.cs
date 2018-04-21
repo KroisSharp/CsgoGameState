@@ -14,6 +14,7 @@ namespace CsgoGameState
 
 
         public static readonly int CTFullBuy = 5500;
+        public static readonly int TFullBuy = 4700;
         public static readonly int Loss1 = 1400;
         public static readonly int Loss2 = 1900;
         public static readonly int Loss3 = 2400;
@@ -38,7 +39,32 @@ namespace CsgoGameState
         }
 
 
+        private static void mittable(GameState gs)
+        {
 
+            int _playermoney = gs.Player.State.Money;
+            string _current = myifloop(_playermoney);
+            string _loss1 = myifloop(_playermoney + Loss1);
+            string _loss2 = myifloop(_playermoney + Loss1 + Loss2);
+            string _loss3 = myifloop(_playermoney + Loss1 + Loss2 + Loss3);
+
+            string _fullbuy = myifloop(Fullbuy(gs)); // en metode kalder en metode no go
+
+
+            Console.WriteLine(@"╔════════════════════════╗
+                ║ Nuværende: {0}       ║
+                ╠════════╦═══════╦═══════╣
+                ║ Round: ║ Loss  ║ Win   ║
+                ╠════════╬═══════╬═══════╣
+                ║ 1.     ║  {1}║ 16000 ║
+                ╠════════╬═══════╬═══════╣
+                ║ 2.     ║  {2}║       ║
+                ╠════════╬═══════╬═══════╣
+                ║ 3.     ║  {3}║       ║
+                ╠════════╩═══════╩═══════╣
+                ║ Full buy: {4}        ║
+                ╚════════════════════════╝",_current,_loss1,_loss2,_loss3, _fullbuy);
+        }
         static void OnNewGameState(GameState gs)
         {
             int _playerMoney = gs.Player.State.Money;
@@ -76,6 +102,8 @@ namespace CsgoGameState
 
             }
 
+            #region commented
+
             //while (gs.Round.Bomb == BombState.Planted)
             //{
             //    Console.WriteLine(counter);
@@ -87,6 +115,8 @@ namespace CsgoGameState
             //        break;
             //    }
             //}
+
+            #endregion
 
         }
 
@@ -123,6 +153,18 @@ namespace CsgoGameState
             else
             {
                 return istring;
+            }
+        }
+
+        private static int Fullbuy(GameState gs)
+        {
+            if (gs.Player.Team == PlayerTeam.T)
+            {
+                return 4700;
+            }
+            else
+            {
+                return 5500;
             }
         }
     }
