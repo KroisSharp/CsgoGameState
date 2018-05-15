@@ -49,7 +49,7 @@ namespace CsgoGameState
                 printMik();
                 Console.WriteLine(@"
 ╔════════════════════════╗
-║ Nuværende: {0}       ║
+║ Current: {0}         ║
 ╠════════╦═══════╦═══════╣
 ║ Round: ║ Loss  ║ Win   ║
 ╠════════╬═══════╬═══════╣
