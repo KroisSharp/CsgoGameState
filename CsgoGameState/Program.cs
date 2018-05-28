@@ -13,7 +13,7 @@ namespace CsgoGameState
         public static readonly int Loss2 = 1900;
         public static readonly int Loss3 = 2400;
         public static readonly int Win = 3250;
-
+         
 
         private static void Main(string[] args)
         {
