@@ -14,16 +14,14 @@ namespace CsgoGameState
         public static readonly int Loss3 = 2400;
         public static readonly int Win = 3250;
 
-            
+
         private static void Main(string[] args)
         {
             printMik();
             GameStateListener gsl = new GameStateListener(3000); //http://localhost:3000/  
-            gsl.NewGameState += new NewGameStateHandler(mittable);
-            if (!gsl.Start())
-            {
-                Environment.Exit(0);
-            }
+            gsl.NewGameState += mittable;
+            if (!gsl.Start()) Environment.Exit(0);
+
             Console.WriteLine("Waiting for game to launch");
         }
 
@@ -63,7 +61,6 @@ namespace CsgoGameState
 ╚════════════════════════╝", _current, _loss1, _loss2, _loss3, _fullbuy, _win1, _win2, _win3);
                 Thread.Sleep(1000);
             }
-
         }
 
 
